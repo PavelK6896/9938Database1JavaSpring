@@ -34,4 +34,11 @@ public class Woman {
     private List<Woman> daughters = new ArrayList<>();
 
 
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "womans_sons", schema = "test1",
+            joinColumns = @JoinColumn(name = "women_id"),
+            inverseJoinColumns = @JoinColumn(name = "sons_id"))
+    private List<Man> sons = new ArrayList<>();
+
+
 }
