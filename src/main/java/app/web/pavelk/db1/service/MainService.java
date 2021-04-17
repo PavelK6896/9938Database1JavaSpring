@@ -1,5 +1,7 @@
 package app.web.pavelk.db1.service;
 
+import app.web.pavelk.db1.model.Man;
+import app.web.pavelk.db1.repo.ManRep;
 import app.web.pavelk.db1.repo.WomanRep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -18,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class MainService implements CommandLineRunner {
 
     private final WomanRep womanRep;
+    private final ManRep manRep;
     private final EntityManager entityManager;
     private Scanner scanner = new Scanner(System.in);
 
@@ -59,8 +62,16 @@ public class MainService implements CommandLineRunner {
                         .getResultList();
                 System.out.println(list2.size());
 
+                List list3 = entityManager.createQuery("select w from Woman w")
+                        .setHint("javax.persistence.fetchgraph", entityManager.getEntityGraph("eg2"))
+                        .getResultList();
+                System.out.println(list3.size());
 
             } else if (next.equals("8")) {
+
+                List<Man> all = manRep.findAll();
+                System.out.println(all.size());
+                all.forEach(f -> System.out.println(f.getWoman()));
 
             } else if (next.equals("0")) {
                 break;

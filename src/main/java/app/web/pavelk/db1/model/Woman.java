@@ -21,6 +21,12 @@ import static javax.persistence.GenerationType.IDENTITY;
                 attributeNodes = {
                         @NamedAttributeNode(value = "daughters")
                 }
+        ),
+        @NamedEntityGraph(
+                name = "eg2",
+                attributeNodes = {
+                        @NamedAttributeNode(value = "sons")
+                }
         )
 })
 @Entity

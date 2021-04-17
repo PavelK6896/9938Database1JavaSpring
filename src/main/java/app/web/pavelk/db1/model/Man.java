@@ -1,9 +1,7 @@
 package app.web.pavelk.db1.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -23,5 +21,13 @@ public class Man {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @JsonBackReference
+    @JoinTable(name = "womans_sons", schema = "test1",
+            joinColumns = @JoinColumn(name = "sons_id"),
+            inverseJoinColumns = @JoinColumn(name = "women_id"))
+    private Woman woman;
 
 }
