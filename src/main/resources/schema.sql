@@ -51,4 +51,21 @@ TRUNCATE TABLE test1.womans_sons;
 insert into test1.womans_sons (women_id, sons_id )
 values (1,2), (1,3), (2,4), (2,5), (3,6);
 
+------------5
+
+
+create table IF NOT EXISTS test1.mans_sons
+(
+    man_id           int8 not null,
+    sons_id        int8 not null
+);
+
+TRUNCATE TABLE test1.mans_sons;
+
+insert into test1.mans_sons (man_id, sons_id )
+values (1,2), (1,3), (2,4), (2,5), (1,6);
+
+
+--------------6
+
 

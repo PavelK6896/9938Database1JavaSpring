@@ -5,6 +5,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
@@ -29,5 +32,14 @@ public class Man {
             joinColumns = @JoinColumn(name = "sons_id"),
             inverseJoinColumns = @JoinColumn(name = "women_id"))
     private Woman woman;
+
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "mans_sons", schema = "test1",
+            joinColumns = @JoinColumn(name = "man_id"),
+            inverseJoinColumns = @JoinColumn(name = "sons_id"))
+    private List<Man> sons = new ArrayList<>();
+
+
 
 }
