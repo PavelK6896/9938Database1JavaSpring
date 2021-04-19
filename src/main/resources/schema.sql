@@ -69,3 +69,15 @@ values (1,2), (1,3), (2,4), (2,5), (1,6);
 --------------6
 
 
+create table IF NOT EXISTS test1.mans_daughters
+(
+    man_id           int8 not null,
+    daughters_id        int8 not null
+);
+
+TRUNCATE TABLE test1.mans_daughters;
+
+insert into test1.mans_daughters (man_id, daughters_id )
+values (1,2), (1,3), (2,4), (2,5), (1,6);
+
+

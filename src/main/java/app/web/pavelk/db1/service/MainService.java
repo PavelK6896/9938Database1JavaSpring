@@ -79,8 +79,10 @@ public class MainService implements CommandLineRunner {
                 all.stream().flatMap(f -> f.getSons().stream()).forEach(System.out::println);
 
             } else if (next.equals("10")) {
+                List<Man> all = manRep.findAll();
 
             } else if (next.equals("11")) {
+              manRep.findAll().stream().flatMap(f -> f.getDaughters().stream()).forEach(System.out::println);
 
             } else if (next.equals("12")) {
 
