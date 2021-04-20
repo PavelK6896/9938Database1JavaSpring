@@ -5,11 +5,15 @@ import app.web.pavelk.db1.repo.ManRep;
 import app.web.pavelk.db1.repo.WomanRep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -82,11 +86,23 @@ public class MainService implements CommandLineRunner {
                 List<Man> all = manRep.findAll();
 
             } else if (next.equals("11")) {
-              manRep.findAll().stream().flatMap(f -> f.getDaughters().stream()).forEach(System.out::println);
+                manRep.findAll().stream().flatMap(f -> f.getDaughters().stream()).forEach(System.out::println);
 
             } else if (next.equals("12")) {
 
+                manRep.findAllE().forEach(f -> System.out.println(f.getId()));
+
             } else if (next.equals("13")) {
+
+                manRep.findAll().forEach(f -> System.out.println(f.getId()));
+
+                manRep.findAll(PageRequest.of(0, 1, Sort.by(
+                        Sort.Order.desc("id"))))
+                        .getContent().forEach(f -> System.out.println(f.getId()));
+
+                manRep.findAll(PageRequest.of(0, 1,Sort.by(
+                        Sort.Order.asc("id"))))
+                        .getContent().forEach(f -> System.out.println(f.getId()));
 
             } else if (next.equals("0")) {
                 break;

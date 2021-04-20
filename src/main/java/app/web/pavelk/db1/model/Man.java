@@ -11,10 +11,18 @@ import java.util.List;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
-@Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+                name = "eg11",
+                attributeNodes = {
+                        @NamedAttributeNode(value = "sons")
+                }
+        )
+})
+@Entity
 @Table(name = "mans", schema = "test1")
 public class Man {
 
