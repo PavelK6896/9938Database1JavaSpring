@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +18,12 @@ import static javax.persistence.GenerationType.IDENTITY;
                 name = "eg11",
                 attributeNodes = {
                         @NamedAttributeNode(value = "sons")
+                }
+        ),
+        @NamedEntityGraph(
+                name = "eg12",
+                attributeNodes = {
+                        @NamedAttributeNode(value = "daughters")
                 }
         )
 })
@@ -54,8 +59,6 @@ public class Man {
             joinColumns = @JoinColumn(name = "man_id"),
             inverseJoinColumns = @JoinColumn(name = "daughters_id"))
     private List<Woman> daughters = new ArrayList<>();
-
-
 
 
 }

@@ -14,5 +14,9 @@ public interface ManRep extends JpaRepository<Man, Long> {
     @Query("select m from Man m")
     List<Man> findAllE();
 
+    @EntityGraph(value = "eg12", type = EntityGraph.EntityGraphType.FETCH)
+    @Query("select m from Man m")
+    List<Man> findAllE12();
+
 
 }

@@ -5,7 +5,6 @@ import app.web.pavelk.db1.repo.ManRep;
 import app.web.pavelk.db1.repo.WomanRep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.awt.print.Pageable;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -100,10 +98,20 @@ public class MainService implements CommandLineRunner {
                         Sort.Order.desc("id"))))
                         .getContent().forEach(f -> System.out.println(f.getId()));
 
-                manRep.findAll(PageRequest.of(0, 1,Sort.by(
+                manRep.findAll(PageRequest.of(0, 1, Sort.by(
                         Sort.Order.asc("id"))))
                         .getContent().forEach(f -> System.out.println(f.getId()));
 
+            } else if (next.equals("14")) {
+                System.out.println(manRep.findAllE12().size());
+
+            } else if (next.equals("15")) {
+                manRep.findAllE12().stream().map(f -> f.getDaughters().size()).forEach(System.out::println);
+
+            } else if (next.equals("16")) {
+            } else if (next.equals("17")) {
+            } else if (next.equals("18")) {
+            } else if (next.equals("19")) {
             } else if (next.equals("0")) {
                 break;
             }
