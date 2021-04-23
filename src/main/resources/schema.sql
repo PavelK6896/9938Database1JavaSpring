@@ -52,6 +52,7 @@ values (1, 2),
        (3, 6);
 
 ------------3
+
 create table IF NOT EXISTS test1.mans
 (
     id
@@ -63,6 +64,7 @@ create table IF NOT EXISTS test1.mans
 (
     255
 ),
+    info_id int8,
     primary key
 (
     id
@@ -71,13 +73,13 @@ create table IF NOT EXISTS test1.mans
 
 TRUNCATE TABLE test1.mans;
 
-insert into test1.mans (id, name)
-values (1, 'Bob'),
-       (2, 'Mark'),
-       (3, 'Sten'),
-       (4, 'Dug'),
-       (5, 'Jo'),
-       (6, 'Itun');
+insert into test1.mans (id, name, info_id)
+values (1, 'Bob', 1),
+       (2, 'Mark', 1),
+       (3, 'Sten', 1),
+       (4, 'Dug', 1),
+       (5, 'Jo', 1),
+       (6, 'Itun', 1);
 -----------4
 
 create table IF NOT EXISTS test1.womans_sons
@@ -154,11 +156,22 @@ values (1, 2),
 
 create table IF NOT EXISTS test1.infos
 (
-    id    bigserial not null,
-    uuid1   uuid,
-    info1 varchar(255),
-    primary key (id)
-);
+    id
+    bigserial
+    not
+    null,
+    uuid1
+    uuid,
+    info1
+    varchar
+(
+    255
+),
+    primary key
+(
+    id
+)
+    );
 
 TRUNCATE TABLE test1.infos;
 

@@ -60,5 +60,8 @@ public class Man {
             inverseJoinColumns = @JoinColumn(name = "daughters_id"))
     private List<Woman> daughters = new ArrayList<>();
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "info_id", referencedColumnName = "id")
+    private Info info;
 
 }

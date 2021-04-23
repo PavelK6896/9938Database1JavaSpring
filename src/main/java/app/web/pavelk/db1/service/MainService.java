@@ -111,10 +111,10 @@ public class MainService implements CommandLineRunner {
 
             } else if (next.equals("15")) {
                 manRep.findAllE12().stream().map(f -> f.getDaughters().size()).forEach(System.out::println);
-
             } else if (next.equals("16")) {
                 System.out.println(infoRep.findAll());
             } else if (next.equals("17")) {
+                System.out.println(manRep.findAll());
             } else if (next.equals("18")) {
             } else if (next.equals("19")) {
             } else if (next.equals("0")) {
