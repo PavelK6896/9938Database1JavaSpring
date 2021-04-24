@@ -13,6 +13,7 @@ create table IF NOT EXISTS test1.womans
 (
     255
 ),
+        info_id int8,
     primary key
 (
     id
@@ -21,13 +22,13 @@ create table IF NOT EXISTS test1.womans
 
 TRUNCATE TABLE test1.womans;
 
-insert into test1.womans (id, name)
-values (1, 'Wendy'),
-       (2, 'Brenda'),
-       (3, 'Carol'),
-       (4, 'Linda'),
-       (5, 'Betty'),
-       (6, 'Lisa');
+insert into test1.womans (id, name, info_id)
+values (1, 'Wendy', 2),
+       (2, 'Brenda', 2),
+       (3, 'Carol', 2),
+       (4, 'Linda', 2),
+       (5, 'Betty', 2),
+       (6, 'Lisa', 2);
 
 -----------------2
 create table IF NOT EXISTS test1.womans_daughters

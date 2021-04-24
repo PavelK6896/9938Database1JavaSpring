@@ -60,4 +60,8 @@ public class Woman {
     private List<Man> sons = new ArrayList<>();
 
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "info_id", referencedColumnName = "id")
+    private Info info;
+
 }
