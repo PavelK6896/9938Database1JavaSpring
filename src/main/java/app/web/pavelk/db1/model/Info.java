@@ -1,11 +1,11 @@
 package app.web.pavelk.db1.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.UUID;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -16,7 +16,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity
 @Table(name = "infos", schema = "test1")
-public class Info {
+public class Info implements Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -27,5 +27,10 @@ public class Info {
 
     @Column(name = "info1")
     private String info1;
+
+    @Column(name = "json1", columnDefinition = "json")
+    @ToString.Exclude
+    @JsonBackReference
+    private String json1;
 
 }

@@ -1,6 +1,5 @@
 package app.web.pavelk.db1.service;
 
-import app.web.pavelk.db1.model.Info;
 import app.web.pavelk.db1.model.Man;
 import app.web.pavelk.db1.repo.InfoRep;
 import app.web.pavelk.db1.repo.ManRep;
@@ -16,7 +15,6 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Scanner;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -27,6 +25,7 @@ public class MainService implements CommandLineRunner {
     private final WomanRep womanRep;
     private final ManRep manRep;
     private final InfoRep infoRep;
+    private final WriteService writeService;
     private final EntityManager entityManager;
     private Scanner scanner = new Scanner(System.in);
 
@@ -118,7 +117,7 @@ public class MainService implements CommandLineRunner {
             } else if (next.equals("18")) {
                 System.out.println(womanRep.findAll());
             } else if (next.equals("19")) {
-
+                writeService.createInfo();
             } else if (next.equals("0")) {
                 break;
             }

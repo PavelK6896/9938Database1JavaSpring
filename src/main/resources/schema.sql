@@ -5,20 +5,17 @@ CREATE SCHEMA IF NOT EXISTS post;
 create table IF NOT EXISTS test1.womans
 (
     id
-    bigserial
-    not
-    null,
+            bigserial
+        not
+            null,
     name
-    varchar
-(
-    255
-),
-        info_id int8,
+            varchar(255),
+    info_id int8,
     primary key
-(
-    id
-)
-    );
+        (
+         id
+            )
+);
 
 TRUNCATE TABLE test1.womans;
 
@@ -34,13 +31,13 @@ values (1, 'Wendy', 2),
 create table IF NOT EXISTS test1.womans_daughters
 (
     women_id
-    int8
-    not
-    null,
+        int8
+        not
+            null,
     daughters_id
-    int8
-    not
-    null
+        int8
+        not
+            null
 );
 
 TRUNCATE TABLE test1.womans_daughters;
@@ -57,20 +54,17 @@ values (1, 2),
 create table IF NOT EXISTS test1.mans
 (
     id
-    bigserial
-    not
-    null,
+            bigserial
+        not
+            null,
     name
-    varchar
-(
-    255
-),
+            varchar(255),
     info_id int8,
     primary key
-(
-    id
-)
-    );
+        (
+         id
+            )
+);
 
 TRUNCATE TABLE test1.mans;
 
@@ -86,13 +80,13 @@ values (1, 'Bob', 1),
 create table IF NOT EXISTS test1.womans_sons
 (
     women_id
-    int8
-    not
-    null,
+        int8
+        not
+            null,
     sons_id
-    int8
-    not
-    null
+        int8
+        not
+            null
 );
 
 TRUNCATE TABLE test1.womans_sons;
@@ -109,14 +103,8 @@ values (1, 2),
 
 create table IF NOT EXISTS test1.mans_sons
 (
-    man_id
-    int8
-    not
-    null,
-    sons_id
-    int8
-    not
-    null
+    man_id  int8 not null,
+    sons_id int8 not null
 );
 
 TRUNCATE TABLE test1.mans_sons;
@@ -134,14 +122,8 @@ values (1, 2),
 
 create table IF NOT EXISTS test1.mans_daughters
 (
-    man_id
-    int8
-    not
-    null,
-    daughters_id
-    int8
-    not
-    null
+    man_id       int8 not null,
+    daughters_id int8 not null
 );
 
 TRUNCATE TABLE test1.mans_daughters;
@@ -157,24 +139,18 @@ values (1, 2),
 
 create table IF NOT EXISTS test1.infos
 (
-    id
-    bigserial
-    not
-    null,
-    uuid1
-    uuid,
-    info1
-    varchar
-(
-    255
-),
-    primary key
-(
-    id
-)
-    );
+    id    serial not null,
+    uuid1 uuid,
+    info1 varchar(255),
+    json1 json,
+    primary key (id)
+);
 
-TRUNCATE TABLE test1.infos;
+-- TRUNCATE TABLE test1.infos;
+
+delete
+from test1.infos
+where id in (1, 2);
 
 insert into test1.infos (id, uuid1, info1)
 values (1, 'da55bbe1-c3cf-4842-96cb-b37aff127bb6', 'info1'),
