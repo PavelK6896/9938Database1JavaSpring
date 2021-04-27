@@ -118,6 +118,15 @@ public class MainService implements CommandLineRunner {
                 System.out.println(womanRep.findAll());
             } else if (next.equals("19")) {
                 writeService.createInfo();
+            } else if (next.equals("20")) {
+                writeService.createInfo2();
+            } else if (next.equals("21")) {
+            } else if (next.equals("22")) {
+            } else if (next.equals("23")) {
+            } else if (next.equals("24")) {
+            } else if (next.equals("25")) {
+            } else if (next.equals("26")) {
+            } else if (next.equals("27")) {
             } else if (next.equals("0")) {
                 break;
             }

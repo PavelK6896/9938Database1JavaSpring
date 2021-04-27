@@ -143,6 +143,7 @@ create table IF NOT EXISTS test1.infos
     uuid1 uuid,
     info1 varchar(255),
     json1 json,
+    json2 jsonb,
     primary key (id)
 );
 
@@ -150,10 +151,10 @@ create table IF NOT EXISTS test1.infos
 
 delete
 from test1.infos
-where id in (1, 2);
+where id in (1000, 1001);
 
 insert into test1.infos (id, uuid1, info1)
-values (1, 'da55bbe1-c3cf-4842-96cb-b37aff127bb6', 'info1'),
-       (2, '8195e7cb-ad64-4a89-80a4-b3481527557a', 'info1');
+values (1000, 'da55bbe1-c3cf-4842-96cb-b37aff127bb6', 'info1'),
+       (1001, '8195e7cb-ad64-4a89-80a4-b3481527557a', 'info1');
 
 

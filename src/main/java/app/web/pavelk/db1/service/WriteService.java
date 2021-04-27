@@ -34,6 +34,24 @@ public class WriteService {
             e.printStackTrace();
         }
     }
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW, noRollbackFor = IllegalAccessError.class)
+    public void createInfo2() {
+        try {
+            int i1 = entityManager.createNativeQuery("INSERT INTO " +
+                    " test1.infos   (info1, json2, uuid1)  values " +
+                    "('bbbbbbbbbbbb', cast(:jsonC1 as jsonb), :uuid1) ")
+                    .setParameter("jsonC1", objectMapper.writeValueAsString(
+                            TestDate.builder().s1("json b").s2(" jjjj jjj jj").build()))
+                    .setParameter("uuid1", UUID.randomUUID())
+                    .executeUpdate();
+            System.out.println(i1);
+
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 
 @Data

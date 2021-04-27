@@ -33,4 +33,9 @@ public class Info implements Serializable {
     @JsonBackReference
     private String json1;
 
+    @Column(name = "json2", columnDefinition = "jsonb")
+    @ToString.Exclude
+    @JsonBackReference
+    private String json2;
+
 }
