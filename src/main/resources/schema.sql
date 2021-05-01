@@ -4,17 +4,10 @@ CREATE SCHEMA IF NOT EXISTS post;
 ----------1
 create table IF NOT EXISTS test1.womans
 (
-    id
-            bigserial
-        not
-            null,
-    name
-            varchar(255),
+    id      bigserial not null,
+    name    varchar(255),
     info_id int8,
-    primary key
-        (
-         id
-            )
+    primary key (id)
 );
 
 TRUNCATE TABLE test1.womans;
@@ -30,14 +23,8 @@ values (1, 'Wendy', 2),
 -----------------2
 create table IF NOT EXISTS test1.womans_daughters
 (
-    women_id
-        int8
-        not
-            null,
-    daughters_id
-        int8
-        not
-            null
+    women_id     int8 not null,
+    daughters_id int8 not null
 );
 
 TRUNCATE TABLE test1.womans_daughters;
@@ -156,5 +143,23 @@ where id in (1000, 1001);
 insert into test1.infos (id, uuid1, info1)
 values (1000, 'da55bbe1-c3cf-4842-96cb-b37aff127bb6', 'info1'),
        (1001, '8195e7cb-ad64-4a89-80a4-b3481527557a', 'info1');
+
+
+--------------------------8
+
+create table IF NOT EXISTS test1.setting
+(
+    id          serial not null,
+    description varchar(255),
+    primary key (id)
+);
+
+TRUNCATE TABLE test1.setting;
+
+insert into test1.setting (id, description)
+values (1, 'description1'),
+       (2, 'description2');
+
+
 
 

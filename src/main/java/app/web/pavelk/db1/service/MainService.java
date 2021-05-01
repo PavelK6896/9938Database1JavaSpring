@@ -1,8 +1,10 @@
 package app.web.pavelk.db1.service;
 
 import app.web.pavelk.db1.model.Man;
+import app.web.pavelk.db1.model.Setting;
 import app.web.pavelk.db1.repo.InfoRep;
 import app.web.pavelk.db1.repo.ManRep;
+import app.web.pavelk.db1.repo.SettingRep;
 import app.web.pavelk.db1.repo.WomanRep;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +27,7 @@ public class MainService implements CommandLineRunner {
     private final WomanRep womanRep;
     private final ManRep manRep;
     private final InfoRep infoRep;
+    private final SettingRep settingRep;
     private final WriteService writeService;
     private final EntityManager entityManager;
     private Scanner scanner = new Scanner(System.in);
@@ -111,22 +114,34 @@ public class MainService implements CommandLineRunner {
             } else if (next.equals("15")) {
                 manRep.findAllE12().stream().map(f -> f.getDaughters().size()).forEach(System.out::println);
             } else if (next.equals("16")) {
-                System.out.println(infoRep.findAll());
+
             } else if (next.equals("17")) {
-                System.out.println(manRep.findAll());
+
             } else if (next.equals("18")) {
-                System.out.println(womanRep.findAll());
+
             } else if (next.equals("19")) {
                 writeService.createInfo();
             } else if (next.equals("20")) {
                 writeService.createInfo2();
             } else if (next.equals("21")) {
+
             } else if (next.equals("22")) {
+                settingRep.save(Setting.builder().id(10L).description("333").build());
             } else if (next.equals("23")) {
             } else if (next.equals("24")) {
             } else if (next.equals("25")) {
             } else if (next.equals("26")) {
             } else if (next.equals("27")) {
+            } else if (next.equals("m")) {
+                manRep.findAll().forEach(System.out::println);
+            } else if (next.equals("w")) {
+                womanRep.findAll().forEach(System.out::println);
+            } else if (next.equals("i")) {
+                infoRep.findAll().forEach(System.out::println);
+            } else if (next.equals("s")) {
+                settingRep.findAll().forEach(System.out::println);
+            } else if (next.equals("ws")) {
+                womanRep.findAll().stream().map(f -> f.getSetting()).forEach(System.out::println);
             } else if (next.equals("0")) {
                 break;
             }
