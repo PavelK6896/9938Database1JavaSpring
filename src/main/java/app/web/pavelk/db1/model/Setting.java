@@ -1,10 +1,8 @@
 package app.web.pavelk.db1.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -24,5 +22,10 @@ public class Setting {
 
     @Column(name = "description")
     private String description;
+
+    @ToString.Exclude
+    @JsonBackReference
+    @OneToOne(mappedBy = "setting")
+    private Woman woman;
 
 }

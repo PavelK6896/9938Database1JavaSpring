@@ -47,6 +47,8 @@ public class Man {
     private Woman woman;
 
 
+    @ToString.Exclude
+    @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "mans_sons", schema = "test1",
             joinColumns = @JoinColumn(name = "man_id"),
@@ -54,12 +56,16 @@ public class Man {
     private List<Man> sons = new ArrayList<>();
 
 
+    @ToString.Exclude
+    @JsonBackReference
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "mans_daughters", schema = "test1",
             joinColumns = @JoinColumn(name = "man_id"),
             inverseJoinColumns = @JoinColumn(name = "daughters_id"))
     private List<Woman> daughters = new ArrayList<>();
 
+    @ToString.Exclude
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "info_id", referencedColumnName = "id")
     private Info info;

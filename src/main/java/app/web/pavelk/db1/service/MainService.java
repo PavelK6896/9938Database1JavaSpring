@@ -142,6 +142,10 @@ public class MainService implements CommandLineRunner {
                 settingRep.findAll().forEach(System.out::println);
             } else if (next.equals("ws")) {
                 womanRep.findAll().stream().map(f -> f.getSetting()).forEach(System.out::println);
+            } else if (next.equals("sw")) {
+                settingRep.findAll().stream().forEach(f -> {
+                    System.out.println(f + " -w-> " + f.getWoman());
+                });
             } else if (next.equals("0")) {
                 break;
             }

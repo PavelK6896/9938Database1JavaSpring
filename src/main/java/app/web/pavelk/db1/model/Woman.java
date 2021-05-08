@@ -72,9 +72,7 @@ public class Woman {
     @ToString.Exclude
     @JsonBackReference
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "setting", schema = "test1",
-            joinColumns = {@JoinColumn(name = "id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "id", referencedColumnName = "id")})
+    @JoinColumn(name = "setting_id")
     private Setting setting;
 
 }
