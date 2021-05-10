@@ -70,4 +70,10 @@ public class Man {
     @JoinColumn(name = "info_id", referencedColumnName = "id")
     private Info info;
 
+    @ToString.Exclude
+    @JsonBackReference
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "setting_id", referencedColumnName = "id")
+    private Setting setting;
+
 }

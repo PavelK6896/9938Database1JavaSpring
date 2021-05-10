@@ -28,4 +28,9 @@ public class Setting {
     @OneToOne(mappedBy = "setting")
     private Woman woman;
 
+    @ToString.Exclude
+    @JsonBackReference
+    @OneToOne(mappedBy = "setting")
+    private Man man;
+
 }
