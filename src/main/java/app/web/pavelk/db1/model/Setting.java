@@ -17,7 +17,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Setting {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = IDENTITY, generator = "g2")
     private Long id;
 
     @Column(name = "description")

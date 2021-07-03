@@ -71,7 +71,7 @@ public class Woman {
 
     @ToString.Exclude
     @JsonBackReference
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "setting_id", referencedColumnName = "id")
     private Setting setting;
 

@@ -2,6 +2,7 @@ package app.web.pavelk.db1.service;
 
 import app.web.pavelk.db1.model.Man;
 import app.web.pavelk.db1.model.Setting;
+import app.web.pavelk.db1.model.Woman;
 import app.web.pavelk.db1.repo.InfoRep;
 import app.web.pavelk.db1.repo.ManRep;
 import app.web.pavelk.db1.repo.SettingRep;
@@ -128,7 +129,18 @@ public class MainService implements CommandLineRunner {
             } else if (next.equals("22")) {
                 settingRep.save(Setting.builder().id(10L).description("333").build());
             } else if (next.equals("23")) {
+                List<Man> man = manRep.findAll();
+                man.forEach(f -> {
+                    f.setSetting(Setting.builder().description("set setting").build());
+                });
+                manRep.saveAll(man);
             } else if (next.equals("24")) {
+                List<Woman> women = womanRep.findAll();
+                women.forEach(f -> {
+                    f.setSetting(Setting.builder().description("set setting").build());
+                });
+                womanRep.saveAll(women);
+
             } else if (next.equals("25")) {
             } else if (next.equals("26")) {
             } else if (next.equals("27")) {

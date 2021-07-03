@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 public class Info implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = IDENTITY, generator = "g1")
     private Long id;
 
     @Column(name = "uuid1")
