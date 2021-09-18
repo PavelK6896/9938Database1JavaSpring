@@ -1,6 +1,9 @@
 package app.web.pavelk.db1.service;
 
+import app.web.pavelk.db1.model.Setting;
+import app.web.pavelk.db1.model.Woman;
 import app.web.pavelk.db1.repo.InfoRep;
+import app.web.pavelk.db1.repo.WomanRep;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.*;
@@ -18,13 +21,14 @@ public class WriteService {
     private final InfoRep infoRep;
     private final EntityManager entityManager;
     private final ObjectMapper objectMapper;
+    private final WomanRep womanRep;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW, noRollbackFor = IllegalAccessError.class)
     public void createInfo() {
         try {
             int i1 = entityManager.createNativeQuery("INSERT INTO " +
-                    " test1.infos   (info1, json1, uuid1)  values " +
-                    "('dasdasda', cast(:jsonC1 as json), :uuid1) ")
+                            " test1.infos   (info1, json1, uuid1)  values " +
+                            "('dasdasda', cast(:jsonC1 as json), :uuid1) ")
                     .setParameter("jsonC1", objectMapper.writeValueAsString(TestDate.builder().s1("ddddddddddd").build()))
                     .setParameter("uuid1", UUID.randomUUID())
                     .executeUpdate();
@@ -39,8 +43,8 @@ public class WriteService {
     public void createInfo2() {
         try {
             int i1 = entityManager.createNativeQuery("INSERT INTO " +
-                    " test1.infos   (info1, json2, uuid1)  values " +
-                    "('bbbbbbbbbbbb', cast(:jsonC1 as jsonb), :uuid1) ")
+                            " test1.infos   (info1, json2, uuid1)  values " +
+                            "('bbbbbbbbbbbb', cast(:jsonC1 as jsonb), :uuid1) ")
                     .setParameter("jsonC1", objectMapper.writeValueAsString(
                             TestDate.builder().s1("json b").s2(" jjjj jjj jj").build()))
                     .setParameter("uuid1", UUID.randomUUID())
@@ -52,6 +56,41 @@ public class WriteService {
         }
     }
 
+    @Transactional
+    public void updateSettingW1() {
+
+        Woman woman = womanRep.findByIdAndBlock(1L).get();
+        System.out.println(woman.getSetting());
+        System.out.println("--");
+        try {
+            Setting setting = woman.getSetting();
+            Long sid = null;
+            if (setting != null) {
+                sid = setting.getId().equals(1L) ? 2L : 1L;
+            }
+            System.out.println(entityManager.createNativeQuery("UPDATE test1.womans SET setting_id = " + sid + " WHERE id = 1 ").executeUpdate());
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Woman woman1 = womanRep.saveAndFlush(woman);
+        System.out.println(woman1.getSetting());
+
+        //Phantom reads!
+        Woman woman2 = womanRep.findById(1L).get();
+        System.out.println(woman2.getSetting());
+
+        Object[] o = (Object[]) entityManager.createNativeQuery("SELECT * from test1.womans  WHERE id = 1 ").getSingleResult();
+        System.out.println(o[3]);
+
+        //Phantom reads!
+        Object[] o2 = (Object[]) womanRep.findByIdNative(1L).get();
+        System.out.println(o2[0]);
+        System.out.println(o2[1]);
+        System.out.println(o2[2]);
+        System.out.println(o2[3]);
+
+    }
 }
 
 @Data

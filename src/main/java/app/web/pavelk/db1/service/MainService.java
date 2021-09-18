@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class MainService implements CommandLineRunner {
 
     private final WomanRep womanRep;
@@ -119,7 +118,7 @@ public class MainService implements CommandLineRunner {
             } else if (next.equals("17")) {
 
             } else if (next.equals("18")) {
-
+                writeService.updateSettingW1();
             } else if (next.equals("19")) {
                 writeService.createInfo();
             } else if (next.equals("20")) {
