@@ -73,22 +73,33 @@ public class WriteService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+        System.out.println("update ------------------ ");
         Woman woman1 = womanRep.saveAndFlush(woman);
         System.out.println(woman1.getSetting());
 
         //Phantom reads!
+        System.out.println("phantom ------------------ ");
         Woman woman2 = womanRep.findById(1L).get();
         System.out.println(woman2.getSetting());
 
+        System.out.println("native manager ------------------ ");
         Object[] o = (Object[]) entityManager.createNativeQuery("SELECT * from test1.womans  WHERE id = 1 ").getSingleResult();
         System.out.println(o[3]);
 
+        System.out.println("clear ------------------ ");
+        entityManager.clear();
+        Woman woman5 = womanRep.findById(1L).get();
+        System.out.println(woman5.getSetting());
+
         //Phantom reads!
+        System.out.println("native repo phantom ------------------ ");
         Object[] o2 = (Object[]) womanRep.findByIdNative(1L).get();
-        System.out.println(o2[0]);
-        System.out.println(o2[1]);
-        System.out.println(o2[2]);
         System.out.println(o2[3]);
+
+        System.out.println("just yet ------------------ ");
+        Woman woman6 = womanRep.findById(1L).get();
+        System.out.println(woman6.getSetting());
 
     }
 }
